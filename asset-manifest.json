@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/SofiyaKalynovska/todo-app-async/static/css/main.fa625ab2.css",
+    "main.js": "/SofiyaKalynovska/todo-app-async/static/js/main.48e910ed.js",
+    "index.html": "/SofiyaKalynovska/todo-app-async/index.html",
+    "main.fa625ab2.css.map": "/SofiyaKalynovska/todo-app-async/static/css/main.fa625ab2.css.map",
+    "main.48e910ed.js.map": "/SofiyaKalynovska/todo-app-async/static/js/main.48e910ed.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fa625ab2.css",
+    "static/js/main.48e910ed.js"
+  ]
+}
