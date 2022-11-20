@@ -1,8 +1,8 @@
 {
-  "name": "todo-app-on-react-toolkit",
+  "name": "todo-app-async",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/SofiyaKalynovska/todo-app-on-react-toolkit",
+  "homepage": "https://github.com/SofiyaKalynovska/todo-app-async",
   "dependencies": {
     "@redux-devtools/extension": "^3.2.3",
     "@reduxjs/toolkit": "^1.9.0",
