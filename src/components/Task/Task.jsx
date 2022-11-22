@@ -1,9 +1,9 @@
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { MdClose } from 'react-icons/md';
 import css from './Task.module.css';
 
 export const Task = ({ task }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <div className={css.wrapper}>
