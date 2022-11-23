@@ -8,62 +8,51 @@ const tasksSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  extraReducers: {
-    [fetchTasks.pending](state) {
+  extraReducers: builder => {
+    builder.addCase(fetchTasks.pending, state => {
       state.isLoading = true;
-    },
-    [fetchTasks.fulfilled](state, action) {
+    }).addCase(fetchTasks.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
       state.items = action.payload;
-    },
-    [fetchTasks.rejected](state, action) {
+    }).addCase(fetchTasks.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-    },
-    [addTask.pending](state) {
+    }).addCase(addTask.pending, state => {
       state.isLoading = true;
-    },
-    [addTask.fulfilled](state, action) {
+    }).addCase(addTask.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
       state.items.push(action.payload);
-    },
-    [addTask.rejected](state, action) {
+    }).addCase(addTask.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-    },
-    [deleteTask.pending](state) {
+    }).addCase(deleteTask.pending, state => {
       state.isLoading = true;
-    },
-    [deleteTask.fulfilled](state, action) {
+    }).addCase(deleteTask.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
       const index = state.items.findIndex(
         task => task.id === action.payload.id
       );
       state.items.splice(index, 1);
-    },
-    [deleteTask.rejected](state, action) {
+    }).addCase(deleteTask.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-    },
-    [toggleCompleted.pending](state) {
+    }).addCase(toggleCompleted.pending, state => {
       state.isLoading = true;
-    },
-    [toggleCompleted.fulfilled](state, action) {
+    }).addCase(toggleCompleted.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = null;
       const index = state.items.findIndex(
         task => task.id === action.payload.id
       );
       state.items.splice(index, 1, action.payload);
-    },
-    [toggleCompleted.rejected](state, action) {
+    }).addCase(toggleCompleted.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-    },
-  },
+    })
+}
 });
 
 export const tasksReducer = tasksSlice.reducer;
