@@ -1,6 +1,8 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { fetchTasks, addTask, deleteTask, toggleCompleted } from "./operations";
 
+const extraActions = [fetchTasks, addTask, deleteTask, toggleCompleted];
+
 const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
@@ -24,17 +26,17 @@ const tasksSlice = createSlice({
       );
       state.items.splice(index, 1, action.payload);
     }).addMatcher(
-      isAnyOf(fetchTasks.pending, addTask.pending, deleteTask.pending, toggleCompleted.pending), state => {
+      isAnyOf(...extraActions.map(action => action.pending)), state => {
         state.isLoading = true;
-    }).addMatcher(
-      isAnyOf(fetchTasks.rejected, addTask.rejected, deleteTask.rejected, toggleCompleted.rejected), (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    }).addMatcher(
-      isAnyOf(fetchTasks.fulfilled, addTask.fulfilled, deleteTask.fulfilled, toggleCompleted.fulfilled), state => {
-        state.isLoading = false;
-        state.error = null;
-      })
+      }).addMatcher(
+        isAnyOf(...extraActions.map(action => action.rejected)), (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        }).addMatcher(
+          isAnyOf(...extraActions.map(action => action.fulfilled)), state => {
+            state.isLoading = false;
+            state.error = null;
+          })
   }
 });
 
