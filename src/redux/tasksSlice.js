@@ -3,6 +3,8 @@ import { fetchTasks, addTask, deleteTask, toggleCompleted } from "./operations";
 
 const extraActions = [fetchTasks, addTask, deleteTask, toggleCompleted];
 
+const getActions = type => extraActions.map(action => action[type]);
+
 const tasksSlice = createSlice({
   name: "tasks",
   initialState: {
@@ -26,14 +28,14 @@ const tasksSlice = createSlice({
       );
       state.items.splice(index, 1, action.payload);
     }).addMatcher(
-      isAnyOf(...extraActions.map(action => action.pending)), state => {
+      isAnyOf(...getActions('pending')), state => {
         state.isLoading = true;
       }).addMatcher(
-        isAnyOf(...extraActions.map(action => action.rejected)), (state, action) => {
+        isAnyOf(...getActions('rejected')), (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
         }).addMatcher(
-          isAnyOf(...extraActions.map(action => action.fulfilled)), state => {
+          isAnyOf(...getActions('fulfilled')), state => {
             state.isLoading = false;
             state.error = null;
           })
